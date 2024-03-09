@@ -1,6 +1,6 @@
 altair==5.2.0
 attrs==23.2.0
-azure-blob-storage
+azure-blob-storage==12.19.1
 azure-common==1.1.28
 azure-core==1.29.7
 azure-mgmt-core==1.4.0
