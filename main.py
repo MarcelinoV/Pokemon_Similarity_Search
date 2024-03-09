@@ -6,13 +6,13 @@ from azure.storage.blob import BlobServiceClient
 from utils.functions import rec_similar_pokemon, read_blob_content
 from PIL import Image
 
-account_name = st.secrets["account_name"]
-account_key = st.secrets["account_key"]
-container_name = st.secrets["container_name"]
+account_name = os.environ["account_name"]
+account_key = os.environ["account_key"]
+container_name = os.environ["container_name"]
 
-custom_blob_name = st.secrets["custom_blob_name"]
-native_blob_name = st.secrets["native_blob_name"]
-updated_blob_name = st.secrets["updated_blob_name"]
+custom_blob_name = os.environ["custom_blob_name"]
+native_blob_name = os.environ["native_blob_name"]
+updated_blob_name = os.environ["updated_blob_name"]
 
 # """
 # FOR WHEN IN PRODUCTION
