@@ -5,6 +5,7 @@ import os
 from azure.storage.blob import BlobServiceClient
 from utils.functions import rec_similar_pokemon, read_blob_content
 from PIL import Image
+from io import BytesIO
 
 account_name = os.environ["account_name"]
 account_key = os.environ["account_key"]
