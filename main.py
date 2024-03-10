@@ -15,9 +15,9 @@ custom_blob_name = os.environ["custom_blob_name"]
 native_blob_name = os.environ["native_blob_name"]
 updated_blob_name = os.environ["updated_blob_name"]
 
-icon_path = os.path.abspath("img\pokemon-3418266-640.png")
+icon_path = os.path.abspath(os.path.join("img", "pokemon-3418266-640.png"))
 
-main_img_path = os.path.abspath("img\pokemon-1624022_640.jpg")
+main_img_path = os.path.abspath(os.path.join("img", "pokemon-1624022_640.jpg"))
 
 v3_content = read_blob_content(account_name, 
                               account_key,
