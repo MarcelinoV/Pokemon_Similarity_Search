@@ -57,7 +57,7 @@ indices = pd.DataFrame(data=poke_dict, index=pokemon_names['name'])
 
 # streamlit app
 
-icon = Image.open("img\pokemon-3418266-640.png")
+icon = Image.open(r"img\pokemon-3418266-640.png")
 
 st.set_page_config(page_title="Pokemon Similarity Search",
                     page_icon=icon,
@@ -66,7 +66,7 @@ st.set_page_config(page_title="Pokemon Similarity Search",
 
 st.title("Pokemon Similarity Search")
 
-st.image(Image.open("img\pokemon-1624022_640.jpg"), caption="Image by PIRO4D on Pixabay")
+st.image(Image.open(r"img\pokemon-1624022_640.jpg"), caption="Image by PIRO4D on Pixabay")
 
 st.subheader("")
 
