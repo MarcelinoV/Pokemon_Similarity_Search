@@ -15,6 +15,10 @@ custom_blob_name = os.environ["custom_blob_name"]
 native_blob_name = os.environ["native_blob_name"]
 updated_blob_name = os.environ["updated_blob_name"]
 
+icon_path = os.path.abspath("img\pokemon-3418266-640.png")
+
+main_img_path = os.path.abspath("img\pokemon-1624022_640.jpg")
+
 v3_content = read_blob_content(account_name, 
                               account_key,
                               container_name,
@@ -57,7 +61,7 @@ indices = pd.DataFrame(data=poke_dict, index=pokemon_names['name'])
 
 # streamlit app
 
-icon = Image.open(r"img\pokemon-3418266-640.png")
+icon = Image.open(icon_path)
 
 st.set_page_config(page_title="Pokemon Similarity Search",
                     page_icon=icon,
@@ -66,7 +70,7 @@ st.set_page_config(page_title="Pokemon Similarity Search",
 
 st.title("Pokemon Similarity Search")
 
-st.image(Image.open(r"img\pokemon-1624022_640.jpg"), caption="Image by PIRO4D on Pixabay")
+st.image(Image.open(main_img_path), caption="Image by PIRO4D on Pixabay")
 
 st.subheader("")
 
