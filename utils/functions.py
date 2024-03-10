@@ -56,19 +56,18 @@ def read_blob_content(storage_account_name, storage_account_key, container_name,
 
     '''Reads files stored on Azure blob storage container'''
 
-    # Create a BlobServiceClient
+   # Create a BlobServiceClient
     blob_service_client = BlobServiceClient(account_url=f"https://{storage_account_name}.blob.core.windows.net", credential=storage_account_key)
-    #print(blob_service_client)
+  
     # Get the blob content as a stream
     blob_client = blob_service_client.get_blob_client(container=container_name, blob=blob_name)
-    #print(blob_client)
+ 
     # Get the blob content as a stream
     blob_stream = blob_client.download_blob()
-   # blob_service_client.get_blob_to_stream(container_name, blob_name, blob_stream)
-    #print(blob_stream)
+   
     # Read the content from the stream
-    blob_content = blob_stream.readall().decode('utf-8')
-    #print(blob_content)
+    blob_content = blob_stream.readall()
+    
     return blob_content
 
 def upload_to_azure_blob(blob_name, account_name, account_key, container_name):
