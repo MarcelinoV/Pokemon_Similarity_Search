@@ -14,42 +14,32 @@ custom_blob_name = os.environ["custom_blob_name"]
 native_blob_name = os.environ["native_blob_name"]
 updated_blob_name = os.environ["updated_blob_name"]
 
-# """
-# FOR WHEN IN PRODUCTION
+v3_content = read_blob_content(account_name, 
+                              account_key,
+                              container_name,
+                              custom_blob_name)
 
-# account_name = os.environ['account_name']
-# account_key = os.environ['account_key']
-# container_name = os.environ['container_name']
+v4_content = read_blob_content(account_name, 
+                              account_key,
+                              container_name,
+                              updated_blob_name)
 
-# custom_blob_name = os.environ['custom_blob_name']
-# native_blob_name = os.environ['native_blob_name']
-# """
+with BytesIO(v3_content) as v3:
+    v3_embedding = np.load(v3)
 
-# print(read_blob_content(account_name, 
+with  BytesIO(v4_content) as v4:
+    v4_embedding = np.load(v4)
+
+# other = np.load(BytesIO(read_blob_content(account_name, 
 #                               account_key,
 #                               container_name,
-#                               custom_blob_name))
+#                               native_blob_name)), allow_pickle=True)
 
-v3_embedding = np.load(read_blob_content(account_name, 
-                              account_key,
-                              container_name,
-                              native_blob_name))
-
-v4_embedding = np.load(read_blob_content(account_name, 
-                              account_key,
-                              container_name,
-                              updated_blob_name))
-
-other = np.load(read_blob_content(account_name, 
-                              account_key,
-                              container_name,
-                              'cosine_sim_v3_pokemon_custom.npy'))
-
-embedding_list = [v3_embedding, v4_embedding, other]
+embedding_list = [v3_embedding, v4_embedding]
 
 embedding_label = ["Type-Focused Embedding", "Physical-Focused Embedding"]
 
-blob_list = [native_blob_name, updated_blob_name]
+blob_list = [custom_blob_name, updated_blob_name]
 
 embedding_map = {label:[name, matrix] for label,name,matrix in zip(embedding_label, blob_list, embedding_list)}
 
@@ -58,7 +48,7 @@ embedding_map = {label:[name, matrix] for label,name,matrix in zip(embedding_lab
 #print(v4_embedding)
 # embedding = np.load(custom_blob_name)
 
-pokemon_names = pd.read_csv("app/pokemon_names.csv", index_col="id")
+pokemon_names = pd.read_csv("pokemon_names.csv", index_col="id")
 
 poke_dict = {"index":pokemon_names.index, "url_name":pokemon_names['url_name'].values}
 
@@ -66,7 +56,7 @@ indices = pd.DataFrame(data=poke_dict, index=pokemon_names['name'])
 
 # streamlit app
 
-icon = Image.open("app\img\pokemon-3418266-640.png")
+icon = Image.open("img\pokemon-3418266-640.png")
 
 st.set_page_config(page_title="Pokemon Similarity Search",
                     page_icon=icon,
@@ -75,7 +65,7 @@ st.set_page_config(page_title="Pokemon Similarity Search",
 
 st.title("Pokemon Similarity Search")
 
-st.image(Image.open("app\img\pokemon-1624022_640.jpg"), caption="Image by PIRO4D on Pixabay",)
+st.image(Image.open("img\pokemon-1624022_640.jpg"), caption="Image by PIRO4D on Pixabay")
 
 st.subheader("")
 
