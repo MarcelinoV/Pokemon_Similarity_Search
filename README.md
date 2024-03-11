@@ -37,17 +37,19 @@ To see the code for this, please refer to the Jupyter notebook in the repo.
 
 ## Data Processing
 
-In cleaning the data, I mostly used string operations since most features collected were text. This included removing punctuation, converting letters to lowercase, and separating columns with 2 values into 2 separate columns. For example, the type column as scraped included 2 types for some pokemon, so I separated that into *type_1* and *type_2* columns for easier interpretation (both for me and the algorithms). 
+In cleaning the data, I mostly used string operations since most features collected were text. This included removing punctuation, converting letters to lowercase, removing suffixes or prefixes, and separating columns with 2 values into 2 separate columns. For example, the type column as scraped included 2 types for some pokemon, so I separated that into *type_1* and *type_2* columns for easier interpretation (both for me and the algorithms). 
 
 The most involved data cleaning was with the pokedex descriptions, as I planned to use this column to create TF-IDF vectors for each pokemon. Given that these were represented as a list of pokedex descriptions from games where a given pokemon was present, more processing had to be done such as removing stop words, stemming and lemmatization, and type conversion.
 
-The last feature I added was a is_legendary flag to label if a pokemon was a legendary pokemon or not. My final set of features looked like the following:
+The last feature I added was an *is_legendary* flag to label if a pokemon was a legendary pokemon or not. My final set of features looked like the following:
 
 ![alt text](https://github.com/MarcelinoV/Pokemon_Similarity_Search/blob/main/readme_images/sample_view_of_final_dataset.jpg "final features for creating embeddings")
 
 ## Constructing the Embeddings & Cosine Similarity Scores
 
+To construct the embeddings, I used scikit learn's TfidfVectorizer() and OnehotEncoder() functions to convert the features into numeric representations. From there, the cosine similarity would be applied. I first converted the pokedex descriptions into a matrix of TF-IDF features, and then categorically encoded the rest of the non-numeric features such as species, ability, and if_dual_type. Numeric features like height and weight were left as is.
 
+Each encoded feature was then reshaped and concatenated along the rows using numpy. This resulted in embeddings that were numeric representations of each pokemon in the database. With these, I could apply the consine similarity formula, which would measure the similarity between each vector in the embeddings by taking the normalized dot product of X and Y. In this case, X and Y are both the same embedding, so we're finding the dot product of itself.
 
 ## Azure Blob Storage
 
