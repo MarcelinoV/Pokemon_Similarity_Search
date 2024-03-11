@@ -1,6 +1,6 @@
 # Pokemon_Similarity_Search
 
-![alt text](https://github.com/MarcelinoV/kaggle_commonlit/blob/main/images/commonlit.JPG "CommonLit Readability Competition Banner")
+![alt text](https://github.com/MarcelinoV/Pokemon_Similarity_Search/blob/main/readme_images/pokemon_similarity_cover_photo.jpg)
 
 Pokemon similarity search engine powered by cosine similarity embeddings stored on Azure Blob, serving as a vector database, with the index on the client side
 
