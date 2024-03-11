@@ -43,7 +43,7 @@ The most involved data cleaning was with the pokedex descriptions, as I planned 
 
 The last feature I added was a is_legendary flag to label if a pokemon was a legendary pokemon or not. My final set of features looked like the following:
 
-![alt text](https://github.com/MarcelinoV/Pokemon_Similarity_Search/blob/main/readme_images/sample_view_of_final_dataset.JPG "final features for creating embeddings")
+![alt text](https://github.com/MarcelinoV/Pokemon_Similarity_Search/blob/main/readme_images/sample_view_of_final_dataset.jpg "final features for creating embeddings")
 
 ## Constructing the Embeddings & Cosine Similarity Scores
 
