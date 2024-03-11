@@ -16,7 +16,7 @@ Pokemon similarity search engine powered by cosine similarity embeddings stored 
 
 I gathered the data for this project from the Pokemon Database website, listed as the data source in the previous section. This website is a dedicated resource for Pokemon facts, from the games in the series to individual Pokemon stats, types, traits, and more. For this project, I was interested in attributes pertaining to each Pokemon in the database, such as type, species, and ability. Here is an image of what the part of the page for each pokemon looks like:
 
-![alt text](https://github.com/MarcelinoV/Pokemon_Similarity_Search/blob/main/readme_images/sample_pokemon_db_img.JPG "Example view of webpage with features of interest highlighted")
+![alt text](https://github.com/MarcelinoV/Pokemon_Similarity_Search/blob/main/readme_images/sample_pokemon_db_img.jpg "Example view of webpage with features of interest highlighted")
 
 Using requests and BeautifulSoup, I developed code to loop through the web page of each Pokemon in the database, collect the relevant features, and store them as a pandas dataframe. The resulting dataset had the following schema:
 
