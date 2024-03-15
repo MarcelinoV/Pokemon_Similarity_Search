@@ -47,19 +47,19 @@ The last feature I added was an *is_legendary* flag to label if a pokemon was a 
 
 ![alt text](https://github.com/MarcelinoV/Pokemon_Similarity_Search/blob/main/readme_images/sample_view_of_final_dataset.jpg "final features for creating embeddings")
 
-## Constructing the Embeddings & Cosine Similarity Scores
+## Feature Extraction & Cosine Similarity Scores
 
-For this project, I decided to make two types of embeddings: one that focuses more on similarity based on pokemon types and abilities, and another that incorporates physical traits like height, weight, and gender distribution into its similarity scores.
+For this project, I decided to make two types of cosine similarity matrices: one that focuses more on similarity based on pokemon types and abilities, and another that incorporates physical traits like height, weight, and gender distribution into its similarity scores.
 
-To construct the embeddings, I used scikit learn's TfidfVectorizer() and OnehotEncoder() functions to convert the features into numeric representations. From there, the cosine similarity would be applied. I first converted the pokedex descriptions into a matrix of TF-IDF features, and then categorically encoded the rest of the non-numeric features such as species, ability, and if_dual_type. Numeric features like height and weight were left as is.
+To construct the matrices, I used scikit learn's TfidfVectorizer() and OnehotEncoder() functions to convert the features into numeric representations. From there, the cosine similarity would be applied. I first converted the pokedex descriptions into a matrix of TF-IDF features, and then categorically encoded the rest of the non-numeric features such as species, ability, and if_dual_type. Numeric features like height and weight were left as is.
 
-Each encoded feature was then reshaped and concatenated along the rows using numpy. This resulted in embeddings that were numeric representations of each pokemon in the database. With these, I could apply the consine similarity formula, which would measure the similarity between each vector in the embeddings by taking the normalized dot product of X and Y. In this case, X and Y are both the same embedding, so we're finding the dot product of itself.
+Each encoded feature was then reshaped and concatenated along the rows using numpy. This resulted in feature matrices that were numeric representations of each pokemon in the database. With these, I could apply the consine similarity formula, which would measure the similarity between each vector in the embeddings by taking the normalized dot product of X and Y. In this case, X and Y are both the same embedding, so we're finding the dot product of itself.
 
 This results in a 1024 x 1024 matrix of cosine similarity scores, where each row represents the similarity scores of that row's pokemon to all the other pokemon in the database. For example, the first row in this matrrix would represent Bulbasaur's similarity scores to all other pokemon.
 
 ## Vector Database: Azure Blob Storage & Client-side Python Function
 
-These cosine similarity matrices would be used as the data behind the similarity search engine I would build in Python. To build on cloud skills learned from my Microsoft Azure Data Fundamentals Certification, I used Azure Blob Storage as a service to store my created embeddings. I then coded a function that could serve as an index for this vector database, where the function takes a pokemon name as an input and returns the top similar pokemon. This is done by creating a reverse mapping of pokemon names and dataframe indices, and using that mapping to query the similarity embeddings based on highest scores.
+These cosine similarity matrices would be used as the data behind the similarity search engine I would build in Python. To build on cloud skills learned from my Microsoft Azure Data Fundamentals Certification, I used Azure Blob Storage as a service to store my created matrices. I then coded a function that could serve as an index for this makeshift vector database, where the function takes a pokemon name as an input and returns the top similar pokemon. This is done by creating a reverse mapping of pokemon names and dataframe indices, and using that mapping to query the similarity matrices based on highest scores.
 
 ## Streamlit Deployment
 
@@ -67,4 +67,11 @@ This application was deployed on Streamlit Community Cloud, which is a free host
 
 ## Conclusion and Recommendations
 
-New embeddings can be continuously added to this application's storage, which leaves room for building embeddings that use different features to generate similarity scores between pokemon. I also wish to use what I learned from this to build even more interesting vector-powered applications.
+New matrices can be continuously added to this application's storage, which leaves room for building matrices that use different features and/or algorithms to generate similarity scores between pokemon. I plan on implementing the following updatesin the future:
+
+- Add Euclidean Distance matrix to Azure Blob Storage
+- Add Hamming Distance matrix to Azure Blob Storage
+- Use a word embedding created from GloVe or FastText for feature extraction of Pokedex descriptions instead of TF-IDF
+- Evaluate alignment rate of outputs between different similarity search algorithms
+
+
