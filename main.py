@@ -30,28 +30,23 @@ v4_content = read_blob_content(account_name,
                               updated_blob_name)
 
 with BytesIO(v3_content) as v3:
-    v3_embedding = np.load(v3)
+    v3_vectors = np.load(v3)
 
 with  BytesIO(v4_content) as v4:
-    v4_embedding = np.load(v4)
+    v4_vectors = np.load(v4)
 
 # other = np.load(BytesIO(read_blob_content(account_name, 
 #                               account_key,
 #                               container_name,
 #                               native_blob_name)), allow_pickle=True)
 
-embedding_list = [v3_embedding, v4_embedding]
+vector_list = [v3_vectors, v4_vectors]
 
-embedding_label = ["Type-Focused Embedding", "Physical-Focused Embedding"]
+vector_label = ["Type-Focused Vectors", "Physical-Focused Vectors"]
 
 blob_list = [custom_blob_name, updated_blob_name]
 
-embedding_map = {label:[name, matrix] for label,name,matrix in zip(embedding_label, blob_list, embedding_list)}
-
-#print(v3_embedding)
-
-#print(v4_embedding)
-# embedding = np.load(custom_blob_name)
+vector_map = {label:[name, matrix] for label,name,matrix in zip(vector_label, blob_list, vector_list)}
 
 pokemon_names = pd.read_csv("pokemon_names.csv", index_col="id")
 
@@ -74,9 +69,9 @@ st.image(Image.open(main_img_path), caption="Image by PIRO4D on Pixabay")
 
 st.subheader("")
 
-embedding_input = st.selectbox("Select Embedding", embedding_map.keys())
+vector_input = st.selectbox("Select Vectors", vector_map.keys())
 
-if embedding_input == list(embedding_map.keys())[0]:
+if vector_input == list(vector_map.keys())[0]:
     st.text('''This cosine similarity matrix uses the following features (6):
     pokedex description, 
     species, 
@@ -108,7 +103,7 @@ limit_input = int(st.text_input("Top X Similar Pokemon", value=10, max_chars=2))
 
 st.dataframe(
     rec_similar_pokemon(pokemon_input, 
-    embedding_map[embedding_input][1], 
+    vector_map[vector_input][1], 
     indices, 
     pokemon_names,
     limit_input).style.format(subset=['similarity_score'], precision=3),
