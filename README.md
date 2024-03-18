@@ -1,6 +1,6 @@
 # Pokemon_Similarity_Search
 
-![alt text](https://github.com/MarcelinoV/Pokemon_Similarity_Search/blob/main/readme_images/app_flowchart.jpg)
+![alt text](https://github.com/MarcelinoV/Pokemon_Similarity_Search/blob/main/readme_images/app_flowchart.jpg "Flowchart of Application Components")
 
 Pokemon similarity search engine powered by cosine similarity embeddings stored on Azure Blob, serving as a vector database, with the index on the client side. Site link here:
 
