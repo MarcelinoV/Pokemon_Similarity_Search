@@ -71,6 +71,8 @@ st.subheader("")
 
 vector_input = st.selectbox("Select Vectors", vector_map.keys())
 
+pokemon_input = st.selectbox("Enter Pokemon here", pokemon_names["name"], placeholder="Pokemon")
+
 if vector_input == list(vector_map.keys())[0]:
     st.text('''This cosine similarity matrix uses the following features (6):
     pokedex description, 
@@ -95,8 +97,6 @@ else:
     if dual type, 
     if dual egg group.''')
 
-pokemon_input = st.selectbox("Enter Pokemon here", pokemon_names["name"], placeholder="Pokemon")
-
 try:
     limit_input = int(st.text_input("Top X Similar Pokemon", value=10, max_chars=2))
     
@@ -112,3 +112,6 @@ try:
     )},
     height=limit_input*38 if limit_input < 25 else limit_input*25
     )
+
+except ValueError:
+    st.write("Please enter a number.")
