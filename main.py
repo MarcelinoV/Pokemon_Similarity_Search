@@ -97,19 +97,21 @@ else:
 
 pokemon_input = st.selectbox("Enter Pokemon here", pokemon_names["name"], placeholder="Pokemon")
 
-limit_input = int(st.text_input("Top X Similar Pokemon", value=10, max_chars=2))
-
-#pokemon_input = st.text_input(label="Enter Pokemon here", placeholder="Pokemon", value="Pikachu")
-
-st.dataframe(
-    rec_similar_pokemon(pokemon_input, 
-    vector_map[vector_input][1], 
-    indices, 
-    pokemon_names,
-    limit_input).style.format(subset=['similarity_score'], precision=3),
-    column_config={"link": st.column_config.LinkColumn(
-        "Pokedex Link",
-        display_text=indices.url_name.iloc[0]
-    )},
-    height=limit_input*38 if limit_input < 25 else limit_input*25 #- round((limit_input*.075*100))
-    )
+try:
+    limit_input = int(st.text_input("Top X Similar Pokemon", value=10, max_chars=2))
+    
+    st.dataframe(
+        rec_similar_pokemon(pokemon_input, 
+        embedding_map[embedding_input][1], 
+        indices, 
+        pokemon_names,
+        limit_input).style.format(subset=['similarity_score'], precision=3),
+        column_config={"link": st.column_config.LinkColumn(
+            "Pokedex Link",
+            display_text=indices.url_name.iloc[0]
+        )},
+        height=limit_input*38 if limit_input < 25 else limit_input*25
+        )
+    
+except ValueError:
+    st.write("Please enter a number.")
