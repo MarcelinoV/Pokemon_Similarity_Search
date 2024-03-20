@@ -61,6 +61,8 @@ To construct the matrices, I used scikit learn's TfidfVectorizer() and OnehotEnc
 
 Each encoded feature was then reshaped and concatenated along the rows using numpy. This resulted in feature matrices that were numeric representations of each pokemon in the database. With these, I could apply the consine similarity formula, which would measure the similarity between each vector in the embeddings by taking the normalized dot product of X and Y. In this case, X and Y are both the same embedding, so we're finding the dot product of itself.
 
+![alt text](https://github.com/MarcelinoV/Pokemon_Similarity_Search/blob/main/readme_images/cosine-formula.JPG "Cosine Similarity formula")
+
 This results in a 1024 x 1024 matrix of cosine similarity scores, where each row represents the similarity scores of that row's pokemon to all the other pokemon in the database. For example, the first row in this matrrix would represent Bulbasaur's similarity scores to all other pokemon.
 
 ## Vector Database: Azure Blob Storage & Client-side Python Function
