@@ -57,7 +57,7 @@ For this project, I decided to make two types of cosine similarity matrices: one
 
 To construct the matrices, I used scikit learn's TfidfVectorizer() and OnehotEncoder() functions to convert the features into numeric representations. From there, the cosine similarity would be applied. I first converted the pokedex descriptions into a matrix of TF-IDF features, and then categorically encoded the rest of the non-numeric features such as species, ability, and if_dual_type. Numeric features like height and weight were left as is.
 
-![alt text](https://github.com/MarcelinoV/Pokemon_Similarity_Search/blob/main/readme_images/tfidf-formula.jpg "TF-IDF formula")
+![alt text](https://github.com/MarcelinoV/Pokemon_Similarity_Search/blob/main/readme_images/tfidf-formula.JPG "TF-IDF formula")
 
 Each encoded feature was then reshaped and concatenated along the rows using numpy. This resulted in feature matrices that were numeric representations of each pokemon in the database. With these, I could apply the consine similarity formula, which would measure the similarity between each vector in the embeddings by taking the normalized dot product of X and Y. In this case, X and Y are both the same embedding, so we're finding the dot product of itself.
 
