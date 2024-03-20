@@ -20,6 +20,10 @@ I gathered the data for this project from the Pokemon Database website, listed a
 
 ![alt text](https://github.com/MarcelinoV/Pokemon_Similarity_Search/blob/main/readme_images/sample_pokemon_db_img.jpg "Example view of webpage with features of interest highlighted")
 
+I also collected the pokedex entries from the games each pokemon appeared in. This array of descriptions would be used to construct each pokemon's TF-IDF feature matrix.
+
+![alt text](https://github.com/MarcelinoV/Pokemon_Similarity_Search/blob/main/readme_images/sample_pokedex_desc_img.jpg "Sample of pokedex entries for Bulbasaur")
+
 Using requests and BeautifulSoup, I developed code to loop through the web page of each Pokemon in the database, collect the relevant features, and store them as a pandas dataframe. The resulting dataset had the following schema:
 
 - name STR
